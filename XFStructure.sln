@@ -7,7 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFStructure.Android", "XFSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFStructure.iOS", "XFStructure\XFStructure.iOS\XFStructure.iOS.csproj", "{47AFEA1C-DC17-49ED-9D6A-FBB7982FCB85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XFStructure", "XFStructure\XFStructure\XFStructure.csproj", "{BFBEC364-D84F-4742-8A16-AFED36AF75BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XFStructure", "XFStructure\XFStructure\XFStructure.csproj", "{BFBEC364-D84F-4742-8A16-AFED36AF75BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{E7AE9077-9473-445F-8DB1-8378137D3899}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataStores", "DataStores", "{240EAF6C-95DB-4363-AA77-CC8C21FD80CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customizations", "Customizations", "{CC7EDA3D-2446-4FE9-9ECA-A51E20F4E181}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{2517C2B3-8318-4BBB-A4CC-CA699882790D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
