@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Shared.XFStructure;
 using Foundation;
 using UIKit;
 

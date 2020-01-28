@@ -1,8 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XFStructure.Modules.MainScreen;
 
-namespace XFStructure
+namespace Shared.XFStructure
 {
     public partial class App : Application
     {
@@ -10,7 +11,7 @@ namespace XFStructure
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Page1();
         }
 
         protected override void OnStart()
