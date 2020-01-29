@@ -16,5 +16,10 @@ namespace XFStructure.Modules.MainScreen
         {
             InitializeComponent();
         }
+
+        void OnButtonClicked(object sender, EventArgs e)
+        {
+            screenLoader.IsRunning = screenLoaderPanel.IsVisible = true;
+        }
     }
 }
