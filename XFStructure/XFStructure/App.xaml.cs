@@ -1,7 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XFStructure.Modules.MainScreen;
+using Xamvvm;
+using XFStructure.Modules.Login;
 
 namespace Shared.XFStructure
 {
@@ -11,7 +12,12 @@ namespace Shared.XFStructure
         {
             InitializeComponent();
 
-            MainPage = new Page1();
+            XamvvmCore.SetCurrentFactory(new XamvvmFormsFactory(this));
+
+            var withNavigationPage = new NavigationPage(Current.GetPageFromCache<LoginViewModel>() as Page);
+            //var withoutNavigationPage = Current.GetPageFromCache<HomeViewModel>() as Page;
+
+            Current.MainPage = withNavigationPage;
         }
 
         protected override void OnStart()
