@@ -5,6 +5,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamvvm;
 using XFStructure.Modules.Signup;
+using DataStore.Customization.Stores;
+using DataStore.Customization.Responses;
 
 namespace XFStructure.Modules.Login
 {
@@ -16,6 +18,12 @@ namespace XFStructure.Modules.Login
         {
             get { return _username; }
             set { _username = value; OnPropertyChanged("Username"); }
+        }
+        private List<TestResponse> _testResponse;
+        public List<TestResponse> TestResponse
+        {
+            get { return _testResponse; }
+            set { SetField(ref _testResponse, value); }
         }
         #endregion
 
@@ -41,7 +49,14 @@ namespace XFStructure.Modules.Login
 
         public LoginViewModel()
         {
+            TestResponse = new List<TestResponse>();
+        }
 
+        public override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            TestResponse = await new TestStore().GetTestAsync();
         }
         #endregion
 
