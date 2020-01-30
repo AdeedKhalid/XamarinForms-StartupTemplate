@@ -7,6 +7,7 @@ using Xamvvm;
 using XFStructure.Modules.Signup;
 using DataStore.Customization.Stores;
 using DataStore.Customization.Responses;
+using DataStore.Customization.Requests;
 
 namespace XFStructure.Modules.Login
 {
@@ -19,11 +20,17 @@ namespace XFStructure.Modules.Login
             get { return _username; }
             set { _username = value; OnPropertyChanged("Username"); }
         }
-        private List<TestResponse> _testResponse;
-        public List<TestResponse> TestResponse
+        private List<TestResponseGET> _testResponseGET;
+        public List<TestResponseGET> TestResponseGET
         {
-            get { return _testResponse; }
-            set { SetField(ref _testResponse, value); }
+            get { return _testResponseGET; }
+            set { SetField(ref _testResponseGET, value); }
+        }
+        private TestResponsePOST _testResponsePOST;
+        public TestResponsePOST TestResponsePOST
+        {
+            get { return _testResponsePOST; }
+            set { SetField(ref _testResponsePOST, value); }
         }
         #endregion
 
@@ -49,14 +56,18 @@ namespace XFStructure.Modules.Login
 
         public LoginViewModel()
         {
-            TestResponse = new List<TestResponse>();
+            TestResponseGET = new List<TestResponseGET>();
+            TestResponsePOST = new TestResponsePOST();
         }
 
         public override async void OnAppearing()
         {
             base.OnAppearing();
 
-            TestResponse = await new TestStore().GetTestAsync();
+            TestResponseGET = await new TestStoreGET().GetTestAsync();
+            TestResponsePOST = await new TestStorePOST().PostTestAsync(
+                new TestRequestPOST() { name = "test", age = "50", salary = "50000" }
+            );
         }
         #endregion
 

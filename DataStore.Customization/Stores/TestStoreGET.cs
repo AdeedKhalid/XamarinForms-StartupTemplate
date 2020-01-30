@@ -10,22 +10,21 @@ using System.Threading.Tasks;
 
 namespace DataStore.Customization.Stores
 {
-    public class TestStore
+    public class TestStoreGET
     {
-        public async Task<List<TestResponse>> GetTestAsync()
+        public async Task<List<TestResponseGET>> GetTestAsync()
         {
             try
             {
-                var uri = ApiResources.Test;
-
+                var uri = ApiResources.Test_GETAPI;
                 var client = new HttpClient();
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
                 var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var Items = JsonConvert.DeserializeObject<List<TestResponse>>(content);
-                    return Items;
+                    var itemResponse = JsonConvert.DeserializeObject<List<TestResponseGET>>(content);
+                    return itemResponse;
                 }
                 else
                 {
@@ -34,7 +33,7 @@ namespace DataStore.Customization.Stores
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
     }

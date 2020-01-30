@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataStore.Customization.Responses
 {
-    public class TestResponse
+    public class TestResponseGET
     {
         public string id { get; set; }
         public string name { get; set; }
