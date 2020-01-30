@@ -16,5 +16,15 @@ namespace XFStructure.Modules.Login
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (BindingContext is LoginViewModel vm)
+            {
+                vm.Username = "Adeed Khalid";
+            }
+        }
     }
 }

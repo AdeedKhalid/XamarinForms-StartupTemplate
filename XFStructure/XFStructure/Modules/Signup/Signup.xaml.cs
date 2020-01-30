@@ -16,5 +16,10 @@ namespace XFStructure.Modules.Signup
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
     }
 }

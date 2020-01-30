@@ -11,7 +11,12 @@ namespace XFStructure.Modules.Login
     public class LoginViewModel : BasePageModel
     {
         #region Properties
-
+        private string _username;
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; OnPropertyChanged("Username"); }
+        }
         #endregion
 
 
@@ -28,7 +33,8 @@ namespace XFStructure.Modules.Login
             switch (param)
             {
                 case "NavigateToSignup":
-                    await this.PushPageFromCacheAsync<SignupViewModel>();
+                    //await this.PushPageFromCacheAsync<SignupViewModel>();
+                    await this.PushPageFromCacheAsync<SignupViewModel>(c => c.Name = "Adeed Khalid");
                     break;
             }
         }
