@@ -32,6 +32,18 @@ namespace XFStructure.Modules.Login
             get { return _testResponsePOST; }
             set { SetField(ref _testResponsePOST, value); }
         }
+        private TestResponsePUT _testResponsePUT;
+        public TestResponsePUT TestResponsePUT
+        {
+            get { return _testResponsePUT; }
+            set { SetField(ref _testResponsePUT, value); }
+        }
+        private TestResponseDELETE _testResponseDELETE;
+        public TestResponseDELETE TestResponseDELETE
+        {
+            get { return _testResponseDELETE; }
+            set { SetField(ref _testResponseDELETE, value); }
+        }
         #endregion
 
 
@@ -58,6 +70,8 @@ namespace XFStructure.Modules.Login
         {
             TestResponseGET = new List<TestResponseGET>();
             TestResponsePOST = new TestResponsePOST();
+            TestResponsePUT = new TestResponsePUT();
+            TestResponseDELETE = new TestResponseDELETE();
         }
 
         public override async void OnAppearing()
@@ -68,6 +82,11 @@ namespace XFStructure.Modules.Login
             TestResponsePOST = await new TestStorePOST().PostTestAsync(
                 new TestRequestPOST() { name = "test", age = "50", salary = "50000" }
             );
+            TestResponsePUT = await new TestStorePUT().PutTestAsync(
+                50,
+                new TestRequestPUT() { name = "test", age = "50", salary = "50000" }
+            );
+            TestResponseDELETE = await new TestStoreDELETE().DeleteTestAsync(50);
         }
         #endregion
 

@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DataStore.Customization.Paths
 {
+    // https://gorest.co.in/
+    // API details about Features, Authentication, Response Codes
+    
     public static class ApiResources
     {
 
