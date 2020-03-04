@@ -7,12 +7,24 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Shared.XFStructure;
+using Android.Support.V7.Widget;
 
 namespace XFStructure.Droid
 {
     [Activity(Label = "XFStructure", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        #pragma warning disable 0219, 0649
+        static bool falseflag = false;
+        static MainActivity()
+        {
+            if (falseflag)
+            {
+                var ignore = new FitWindowsFrameLayout(Application.Context);
+            }
+        }
+        #pragma warning restore 0219, 0649
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
