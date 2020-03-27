@@ -15,6 +15,11 @@
                     CommandParameter="NavigateToSignup" 
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand" />
+            <!-- For displaying InvertBooleanConverter implementation-->
+            <BoxView HeightRequest="50" 
+                     WidthRequest="50"
+                     BackgroundColor="Red"
+                     IsVisible="{Binding IsBoxViewVisible, Converter={StaticResource InvertBooleanConverter}}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

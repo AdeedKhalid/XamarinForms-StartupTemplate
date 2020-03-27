@@ -20,6 +20,12 @@ namespace XFStructure.Modules.Login
             get { return _username; }
             set { _username = value; OnPropertyChanged("Username"); }
         }
+        private bool _isBoxViewVisible;
+        public bool IsBoxViewVisible
+        {
+            get { return _isBoxViewVisible; }
+            set { _isBoxViewVisible = value; }
+        }
         private List<TestResponseGET> _testResponseGET;
         public List<TestResponseGET> TestResponseGET
         {
