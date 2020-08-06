@@ -5,7 +5,7 @@ using Xamvvm;
 
 namespace XFStructure.ViewModels
 {
-    public class BaseViewModel : BasePageModel
+    public class BasePageViewModel : BasePageModel, IBasePageModel
     {
         #region Properties
         private bool isLoading;

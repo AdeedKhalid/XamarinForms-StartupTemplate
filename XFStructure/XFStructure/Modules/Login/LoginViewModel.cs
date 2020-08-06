@@ -12,7 +12,7 @@ using XFStructure.ViewModels;
 
 namespace XFStructure.Modules.Login
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BasePageViewModel
     {
         #region Properties
         private string _username;

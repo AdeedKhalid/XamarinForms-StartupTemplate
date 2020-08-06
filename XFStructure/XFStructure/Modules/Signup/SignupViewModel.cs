@@ -8,7 +8,7 @@ using XFStructure.ViewModels;
 
 namespace XFStructure.Modules.Signup
 {
-    public class SignupViewModel : BaseViewModel
+    public class SignupViewModel : BasePageViewModel
     {
         #region Properties
         private string _name;
