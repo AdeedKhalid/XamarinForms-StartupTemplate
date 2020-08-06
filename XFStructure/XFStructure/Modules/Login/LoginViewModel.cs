@@ -78,16 +78,19 @@ namespace XFStructure.Modules.Login
         public override async void OnAppearing()
         {
             base.OnAppearing();
+             
+            TestResponseGET = await PerformServiceCall(async () => await new TestStoreGET().GetTestAsync());
 
-            TestResponseGET = await new TestStoreGET().GetTestAsync();
-            TestResponsePOST = await new TestStorePOST().PostTestAsync(
+            TestResponsePOST = await PerformServiceCall(async () => await new TestStorePOST().PostTestAsync(
                 new TestRequestPOST() { name = "test", age = "50", salary = "50000" }
-            );
-            TestResponsePUT = await new TestStorePUT().PutTestAsync(
+            ));
+
+            TestResponsePUT = await PerformServiceCall(async () => await new TestStorePUT().PutTestAsync(
                 50,
                 new TestRequestPUT() { name = "test", age = "50", salary = "50000" }
-            );
-            TestResponseDELETE = await new TestStoreDELETE().DeleteTestAsync(50);
+            ));
+
+            TestResponseDELETE = await PerformServiceCall(async () => await new TestStoreDELETE().DeleteTestAsync(50));
         }
         #endregion
 
