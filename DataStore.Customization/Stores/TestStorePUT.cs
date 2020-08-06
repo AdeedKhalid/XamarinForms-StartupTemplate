@@ -17,7 +17,7 @@ namespace DataStore.Customization.Stores
         {
             try
             {
-                var uri = ApiResources.Test_PUTAPI + "/" + id;
+                var uri = ApiResources.Test_PUTAPI + id;
                 var json = JsonConvert.SerializeObject(item);
                 HttpContent httpContent = new StringContent(json);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");

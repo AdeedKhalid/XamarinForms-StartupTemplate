@@ -15,7 +15,7 @@ namespace DataStore.Customization.Stores
         {
             try
             {
-                var uri = ApiResources.Test_DELETEAPI + "/" + id;
+                var uri = ApiResources.Test_DELETEAPI + id;
                 var client = new HttpClient();
                 //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
                 var response = await client.DeleteAsync(uri);

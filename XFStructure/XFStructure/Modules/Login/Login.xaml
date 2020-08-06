@@ -19,7 +19,7 @@
             <BoxView HeightRequest="50" 
                      WidthRequest="50"
                      BackgroundColor="Red"
-                     IsVisible="{Binding IsBoxViewVisible, Converter={StaticResource InvertBooleanConverter}}"/>
+                     IsVisible="{Binding IsLoading, Converter={StaticResource InvertBooleanConverter}}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

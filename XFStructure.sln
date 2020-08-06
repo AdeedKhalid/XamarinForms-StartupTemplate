@@ -13,11 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataStores", "DataStores", "{240EAF6C-95DB-4363-AA77-CC8C21FD80CB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customizations", "Customizations", "{CC7EDA3D-2446-4FE9-9ECA-A51E20F4E181}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{2517C2B3-8318-4BBB-A4CC-CA699882790D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore.Customization", "DataStore.Customization\DataStore.Customization.csproj", "{2148A2DF-1B94-4BA7-B5C0-E4A2636C9CE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStore.Customization", "DataStore.Customization\DataStore.Customization.csproj", "{2148A2DF-1B94-4BA7-B5C0-E4A2636C9CE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

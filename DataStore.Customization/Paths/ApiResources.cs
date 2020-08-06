@@ -18,12 +18,12 @@ namespace DataStore.Customization.Paths
         public static readonly string RootPath = "api/v1.0/";
 #endif
 
-        public static readonly string Login = $"{EndpointPath}{RootPath}Login";
-        public static readonly string Signup = $"{EndpointPath}{RootPath}Signup";
+        public static readonly string Login = $"{EndpointPath}{RootPath}Login/";
+        public static readonly string Signup = $"{EndpointPath}{RootPath}Signup/";
 
         public static readonly string Test_GETAPI = $"https://jsonplaceholder.typicode.com/users";
         public static readonly string Test_POSTAPI = $"http://dummy.restapiexample.com/api/v1/create";
-        public static readonly string Test_PUTAPI = $"http://dummy.restapiexample.com/update";
-        public static readonly string Test_DELETEAPI = $"http://dummy.restapiexample.com/delete";
+        public static readonly string Test_PUTAPI = $"http://dummy.restapiexample.com/update/";
+        public static readonly string Test_DELETEAPI = $"http://dummy.restapiexample.com/delete/";
     }
 }

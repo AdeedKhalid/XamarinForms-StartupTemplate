@@ -4,10 +4,11 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamvvm;
+using XFStructure.ViewModels;
 
 namespace XFStructure.Modules.Signup
 {
-    public class SignupViewModel : BasePageModel
+    public class SignupViewModel : BaseViewModel
     {
         #region Properties
         private string _name;

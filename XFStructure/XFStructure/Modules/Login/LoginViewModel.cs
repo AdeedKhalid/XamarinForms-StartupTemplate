@@ -8,10 +8,11 @@ using XFStructure.Modules.Signup;
 using DataStore.Customization.Stores;
 using DataStore.Customization.Responses;
 using DataStore.Customization.Requests;
+using XFStructure.ViewModels;
 
 namespace XFStructure.Modules.Login
 {
-    public class LoginViewModel : BasePageModel
+    public class LoginViewModel : BaseViewModel
     {
         #region Properties
         private string _username;
@@ -19,12 +20,6 @@ namespace XFStructure.Modules.Login
         {
             get { return _username; }
             set { _username = value; OnPropertyChanged("Username"); }
-        }
-        private bool _isBoxViewVisible;
-        public bool IsBoxViewVisible
-        {
-            get { return _isBoxViewVisible; }
-            set { _isBoxViewVisible = value; }
         }
         private List<TestResponseGET> _testResponseGET;
         public List<TestResponseGET> TestResponseGET
