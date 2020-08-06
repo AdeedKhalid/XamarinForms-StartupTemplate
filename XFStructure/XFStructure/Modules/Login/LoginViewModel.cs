@@ -9,6 +9,7 @@ using DataStore.Customization.Stores;
 using DataStore.Customization.Responses;
 using DataStore.Customization.Requests;
 using XFStructure.ViewModels;
+using System.Threading.Tasks;
 
 namespace XFStructure.Modules.Login
 {
@@ -85,17 +86,34 @@ namespace XFStructure.Modules.Login
 
         private async void ExecuteInvokeAPICallsCommand(object obj)
         {
-            TestResponseGET = await PerformServiceCall(async () => await new TestStoreGET().GetTestAsync());
+            //await GetAPICall();
+            await PostAPICall();
+            //await PutAPICall();
+            //await DeleteAPICall();
+        }
 
+        private async Task GetAPICall()
+        {
+            TestResponseGET = await PerformServiceCall(async () => await new TestStoreGET().GetTestAsync());
+        }
+
+        private async Task PostAPICall()
+        {
             TestResponsePOST = await PerformServiceCall(async () => await new TestStorePOST().PostTestAsync(
                 new TestRequestPOST() { name = "test", age = "50", salary = "50000" }
             ));
+        }
 
+        private async Task PutAPICall()
+        {
             TestResponsePUT = await PerformServiceCall(async () => await new TestStorePUT().PutTestAsync(
-                50,
-                new TestRequestPUT() { name = "test", age = "50", salary = "50000" }
-            ));
+               50,
+               new TestRequestPUT() { name = "test", age = "50", salary = "50000" }
+           ));
+        }
 
+        private async Task DeleteAPICall()
+        {
             TestResponseDELETE = await PerformServiceCall(async () => await new TestStoreDELETE().DeleteTestAsync(50));
         }
         #endregion
