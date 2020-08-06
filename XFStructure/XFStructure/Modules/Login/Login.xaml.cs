@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamvvm;
+using XFStructure.BasePages;
 
 namespace XFStructure.Modules.Login
 {
-    public partial class Login : ContentPage, IBasePage<LoginViewModel>
+    public partial class Login : BasePage, IBasePage<LoginViewModel>
     {
         public Login()
         {

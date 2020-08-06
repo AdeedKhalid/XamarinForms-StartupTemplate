@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamvvm;
+using XFStructure.BasePages;
 
 namespace XFStructure.Modules.Signup
 {
-    public partial class Signup : ContentPage, IBasePage<SignupViewModel>
+    public partial class Signup : BasePage, IBasePage<SignupViewModel>
     {
         public Signup()
         {

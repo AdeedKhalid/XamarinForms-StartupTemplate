@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="XFStructure.Modules.Login.Login">
-    <ContentPage.Content>
+<basepages:BasePage xmlns:basepages="clr-namespace:XFStructure.BasePages"
+                    xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d"
+                    x:Class="XFStructure.Modules.Login.Login">
+    
+    <basepages:BasePage.MainContent>
         <StackLayout>
             <Label Text="{Binding Username}"
                 VerticalOptions="CenterAndExpand" 
@@ -14,12 +16,13 @@
                     Command="{Binding NavigateToSignup}"
                     CommandParameter="NavigateToSignup" 
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
-            <!-- For displaying InvertBooleanConverter implementation-->
-            <BoxView HeightRequest="50" 
-                     WidthRequest="50"
-                     BackgroundColor="Red"
-                     IsVisible="{Binding IsLoading, Converter={StaticResource InvertBooleanConverter}}"/>
+                    VerticalOptions="CenterAndExpand"/>
+            <Button Text="Call APIs"
+                    Command="{Binding InvokeAPICalls}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource InvertBooleanConverter}}"/>
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </basepages:BasePage.MainContent>
+    
+</basepages:BasePage>

@@ -51,10 +51,26 @@ namespace XFStructure.Modules.Login
         #region Commands
         private ICommand _navigateToSignup;
         public ICommand NavigateToSignup => _navigateToSignup ?? (_navigateToSignup = new Command(ExecuteNavigateToSignupCommand));
+
+        private ICommand _invokeAPICalls;
+        public ICommand InvokeAPICalls => _invokeAPICalls ?? (_invokeAPICalls = new Command(ExecuteInvokeAPICallsCommand));
         #endregion
 
 
         #region Methods
+        public LoginViewModel()
+        {
+            TestResponseGET = new List<TestResponseGET>();
+            TestResponsePOST = new TestResponsePOST();
+            TestResponsePUT = new TestResponsePUT();
+            TestResponseDELETE = new TestResponseDELETE();
+        }
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
         private async void ExecuteNavigateToSignupCommand(object obj)
         {
             var param = obj as string;
@@ -67,18 +83,8 @@ namespace XFStructure.Modules.Login
             }
         }
 
-        public LoginViewModel()
+        private async void ExecuteInvokeAPICallsCommand(object obj)
         {
-            TestResponseGET = new List<TestResponseGET>();
-            TestResponsePOST = new TestResponsePOST();
-            TestResponsePUT = new TestResponsePUT();
-            TestResponseDELETE = new TestResponseDELETE();
-        }
-
-        public override async void OnAppearing()
-        {
-            base.OnAppearing();
-             
             TestResponseGET = await PerformServiceCall(async () => await new TestStoreGET().GetTestAsync());
 
             TestResponsePOST = await PerformServiceCall(async () => await new TestStorePOST().PostTestAsync(
