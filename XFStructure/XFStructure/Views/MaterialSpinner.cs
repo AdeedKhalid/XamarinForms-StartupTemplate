@@ -56,12 +56,6 @@ namespace XFStructure.Views
                     Content = image,
                     Elevation = 8,
                 };
-
-                if (Device.RuntimePlatform == Device.iOS)
-                {
-                    frame.CornerRadius = 40;
-                }
-
                 Content = frame;
             }
             catch (Exception ex)
