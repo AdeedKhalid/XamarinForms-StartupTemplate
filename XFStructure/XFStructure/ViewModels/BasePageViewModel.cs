@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 using Xamvvm;
 
 namespace XFStructure.ViewModels
@@ -41,7 +42,7 @@ namespace XFStructure.ViewModels
             var current = Connectivity.NetworkAccess;
             if (current != NetworkAccess.Internet)
             {
-                var a = "Looks like you're not connected to the internet.";
+                await Application.Current.MainPage.DisplayAlert("", "Looks like you're not connected to the internet.", "OK");
             }
             else
             {
@@ -56,7 +57,7 @@ namespace XFStructure.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        //DisplayCriticalInfo("Unable to process", "Your request could not be processed at this time.");
+                        await Application.Current.MainPage.DisplayAlert("Unable to process", "Your request could not be processed at this time.", "OK");
                     }
                     finally
                     {
