@@ -1,7 +1,7 @@
 ﻿using DataStore.Customization.Helpers;
 using DataStore.Customization.Paths;
-using DataStore.Customization.Requests;
-using DataStore.Customization.Responses;
+using DataStore.Customization.Requests.Login;
+using DataStore.Customization.Responses.Login;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

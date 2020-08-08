@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataStore.Customization.Responses
+namespace DataStore.Customization.Responses.Login
 {
-    public class TestResponseDELETE
+    public class TestResponsePUT
     {
         public string status { get; set; }
-        public string message { get; set; }
+        public Data data { get; set; }
     }
 }

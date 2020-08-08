@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataStore.Customization.Requests
+namespace DataStore.Customization.Requests.Login
 {
-    public class TestRequestPOST
+    public class TestRequestPUT
     {
         public string name { get; set; }
         public string salary { get; set; }

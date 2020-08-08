@@ -6,8 +6,8 @@ using Xamarin.Forms;
 using Xamvvm;
 using XFStructure.Modules.Signup;
 using DataStore.Customization.Stores;
-using DataStore.Customization.Responses;
-using DataStore.Customization.Requests;
+using DataStore.Customization.Responses.Login;
+using DataStore.Customization.Requests.Login;
 using XFStructure.ViewModels;
 using System.Threading.Tasks;
 
@@ -86,8 +86,8 @@ namespace XFStructure.Modules.Login
 
         private async void ExecuteInvokeAPICallsCommand(object obj)
         {
-            //await GetAPICall();
-            await PostAPICall();
+            await GetAPICall();
+            //await PostAPICall();
             //await PutAPICall();
             //await DeleteAPICall();
         }
