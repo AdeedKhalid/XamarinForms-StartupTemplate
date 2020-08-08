@@ -94,19 +94,19 @@ namespace XFStructure.Modules.Login
 
         private async Task GetAPICall()
         {
-            TestResponseGET = await PerformServiceCall(async () => await new TestStoreGET().GetTestAsync());
+            TestResponseGET = await PerformServiceCall(async () => await new LoginStore().GetTestAsync());
         }
 
         private async Task PostAPICall()
         {
-            TestResponsePOST = await PerformServiceCall(async () => await new TestStorePOST().PostTestAsync(
+            TestResponsePOST = await PerformServiceCall(async () => await new LoginStore().PostTestAsync(
                 new TestRequestPOST() { name = "test", age = "50", salary = "50000" }
             ));
         }
 
         private async Task PutAPICall()
         {
-            TestResponsePUT = await PerformServiceCall(async () => await new TestStorePUT().PutTestAsync(
+            TestResponsePUT = await PerformServiceCall(async () => await new LoginStore().PutTestAsync(
                50,
                new TestRequestPUT() { name = "test", age = "50", salary = "50000" }
            ));
@@ -114,7 +114,7 @@ namespace XFStructure.Modules.Login
 
         private async Task DeleteAPICall()
         {
-            TestResponseDELETE = await PerformServiceCall(async () => await new TestStoreDELETE().DeleteTestAsync(50));
+            TestResponseDELETE = await PerformServiceCall(async () => await new LoginStore().DeleteTestAsync(50));
         }
         #endregion
 
