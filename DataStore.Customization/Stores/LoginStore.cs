@@ -1,4 +1,5 @@
-﻿using DataStore.Customization.Paths;
+﻿using DataStore.Customization.Helpers;
+using DataStore.Customization.Paths;
 using DataStore.Customization.Requests;
 using DataStore.Customization.Responses;
 using Newtonsoft.Json;
@@ -17,23 +18,12 @@ namespace DataStore.Customization.Stores
             try
             {
                 var uri = ApiResources.Test_GETAPI;
-                var client = new HttpClient();
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
-                var response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var itemResponse = JsonConvert.DeserializeObject<List<TestResponseGET>>(content);
-                    return itemResponse;
-                }
-                else
-                {
-                    return null;
-                }
+                return await RequestProvider.GetAsync<List<TestResponseGET>>(uri);
             }
             catch (Exception ex)
             {
-                throw ex;
+                return null;
+                // Display Alert
             }
         }
 
@@ -42,26 +32,12 @@ namespace DataStore.Customization.Stores
             try
             {
                 var uri = ApiResources.Test_POSTAPI;
-                var json = JsonConvert.SerializeObject(item);
-                HttpContent httpContent = new StringContent(json);
-                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var client = new HttpClient();
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
-                var response = await client.PostAsync(uri, httpContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var itemResponse = JsonConvert.DeserializeObject<TestResponsePOST>(content);
-                    return itemResponse;
-                }
-                else
-                {
-                    return null;
-                }
+                return await RequestProvider.PostAsync<TestRequestPOST, TestResponsePOST>(uri, item);
             }
             catch (Exception ex)
             {
-                throw ex;
+                return null;
+                // Display Alert
             }
         }
 
@@ -70,26 +46,12 @@ namespace DataStore.Customization.Stores
             try
             {
                 var uri = ApiResources.Test_PUTAPI + id;
-                var json = JsonConvert.SerializeObject(item);
-                HttpContent httpContent = new StringContent(json);
-                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var client = new HttpClient();
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
-                var response = await client.PutAsync(uri, httpContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var itemResponse = JsonConvert.DeserializeObject<TestResponsePUT>(content);
-                    return itemResponse;
-                }
-                else
-                {
-                    return null;
-                }
+                return await RequestProvider.PutAsync<TestRequestPUT, TestResponsePUT>(uri, item);
             }
             catch (Exception ex)
             {
-                throw ex;
+                return null;
+                // Display Alert
             }
         }
 
@@ -98,23 +60,12 @@ namespace DataStore.Customization.Stores
             try
             {
                 var uri = ApiResources.Test_DELETEAPI + id;
-                var client = new HttpClient();
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
-                var response = await client.DeleteAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var itemResponse = JsonConvert.DeserializeObject<TestResponseDELETE>(content);
-                    return itemResponse;
-                }
-                else
-                {
-                    return null;
-                }
+                return await RequestProvider.DeleteAsync<TestResponseDELETE>(uri);
             }
             catch (Exception ex)
             {
-                throw ex;
+                return null;
+                // Display Alert
             }
         }
     }
