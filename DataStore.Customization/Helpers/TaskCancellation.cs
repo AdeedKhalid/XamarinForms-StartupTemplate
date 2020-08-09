@@ -11,6 +11,8 @@ namespace DataStore.Customization.Helpers
 
         public static void CancelAllTasks() => _cancellationTokenSource?.Cancel();
 
+        public static void DisposeCancellation() => _cancellationTokenSource?.Dispose();
+
         public static CancellationToken GetCurrentCancellationToken()
         {
             if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)

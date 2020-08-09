@@ -30,6 +30,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
+            finally { TaskCancellation.DisposeCancellation(); }
         }
 
         public static async Task<TResult> PostAsync<TRequest, TResult>(string uri, TRequest data, string authenticationToken = null)
@@ -54,6 +55,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
+            finally { TaskCancellation.DisposeCancellation(); }
         }
 
         public static async Task<TResult> PutAsync<TRequest, TResult>(string uri, TRequest data, string authenticationToken = null)
@@ -78,6 +80,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
+            finally { TaskCancellation.DisposeCancellation(); }
         }
 
         public static async Task<TResult> DeleteAsync<TResult>(string uri, string authenticationToken = null)
@@ -99,6 +102,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
+            finally { TaskCancellation.DisposeCancellation(); }
         }
     }
 }
