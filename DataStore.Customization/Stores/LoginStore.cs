@@ -20,10 +20,9 @@ namespace DataStore.Customization.Stores
                 var uri = ApiResources.Test_GETAPI;
                 return await RequestProvider.GetAsync<List<TestResponseGET>>(uri);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
-                // Display Alert
             }
         }
 
@@ -34,10 +33,9 @@ namespace DataStore.Customization.Stores
                 var uri = ApiResources.Test_POSTAPI;
                 return await RequestProvider.PostAsync<TestRequestPOST, TestResponsePOST>(uri, item);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
-                // Display Alert
             }
         }
 
@@ -48,10 +46,9 @@ namespace DataStore.Customization.Stores
                 var uri = ApiResources.Test_PUTAPI + id;
                 return await RequestProvider.PutAsync<TestRequestPUT, TestResponsePUT>(uri, item);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
-                // Display Alert
             }
         }
 
@@ -62,10 +59,9 @@ namespace DataStore.Customization.Stores
                 var uri = ApiResources.Test_DELETEAPI + id;
                 return await RequestProvider.DeleteAsync<TestResponseDELETE>(uri);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
-                // Display Alert
             }
         }
     }

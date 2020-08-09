@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataStore.Customization.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,7 @@ namespace XFStructure.BasePages
 
         protected override void OnDisappearing()
         {
-            if (BindingContext != null && BindingContext is BasePageViewModel)
-            {
-                var vm = BindingContext as BasePageViewModel;
-                vm.CancelAllTasks();
-            }
+            TaskCancellation.CancelAllTasks();
             base.OnDisappearing();
         }
 
