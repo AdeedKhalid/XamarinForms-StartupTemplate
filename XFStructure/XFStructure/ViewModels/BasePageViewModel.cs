@@ -21,9 +21,23 @@ namespace XFStructure.ViewModels
         }
         #endregion
 
+        #region CancellationToken
+        private CancellationTokenSource _cancellationTokenSource;
+
+        internal void CancelAllTasks() => _cancellationTokenSource?.Cancel();
+
+        private CancellationToken GetCurrentCancellationToken()
+        {
+            if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
+                _cancellationTokenSource = new CancellationTokenSource();
+            return _cancellationTokenSource.Token;
+        }
+        #endregion
+
         #region PerformServiceCall
         protected async Task<TResult> PerformServiceCall<TResult>(Func<Task<TResult>> serviceCallAction)
         {
+            var cancellationToken = GetCurrentCancellationToken();
             TResult result = default;
             var current = Connectivity.NetworkAccess;
             if (current != NetworkAccess.Internet)
@@ -37,12 +51,11 @@ namespace XFStructure.ViewModels
                     try
                     {
                         IsLoading = true;
+                        cancellationToken.ThrowIfCancellationRequested();
                         result = await serviceCallAction?.Invoke();
+                        cancellationToken.ThrowIfCancellationRequested();
                     }
-                    catch (OperationCanceledException)
-                    {
-                        await Application.Current.MainPage.DisplayAlert("", "Server is not responding!", "OK");
-                    }
+                    catch (OperationCanceledException){ }
                     catch (Exception)
                     {
                         await Application.Current.MainPage.DisplayAlert("Unable to process", "Your request could not be processed at this time.", "OK");

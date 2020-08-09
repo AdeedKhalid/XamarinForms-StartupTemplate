@@ -11,6 +11,17 @@ namespace DataStore.Customization.Helpers
 {
     public static class RequestProvider
     {
+        private static CancellationTokenSource _cancellationTokenSource;
+
+        private static CancellationToken GetCancellationToken()
+        {
+            _cancellationTokenSource = new CancellationTokenSource(10000);
+            return _cancellationTokenSource.Token;
+        }
+
+        private static void DisposeCancellationToken() => 
+            _cancellationTokenSource?.Dispose();
+
         public static async Task<TResult> GetAsync<TResult>(string uri, string authenticationToken = null)
         {
             TResult result = default;
@@ -19,7 +30,7 @@ namespace DataStore.Customization.Helpers
                 var client = new HttpClient();
                 if (!string.IsNullOrWhiteSpace(authenticationToken))
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationToken);
-                var response = await client.GetAsync(uri, TaskCancellation.GetCurrentCancellationToken());
+                var response = await client.GetAsync(uri, GetCancellationToken());
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -30,7 +41,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
-            finally { TaskCancellation.DisposeCancellation(); }
+            finally { DisposeCancellationToken(); }
         }
 
         public static async Task<TResult> PostAsync<TRequest, TResult>(string uri, TRequest data, string authenticationToken = null)
@@ -44,7 +55,7 @@ namespace DataStore.Customization.Helpers
                 var client = new HttpClient();
                 if (!string.IsNullOrWhiteSpace(authenticationToken))
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationToken);
-                var response = await client.PostAsync(uri, httpContent, TaskCancellation.GetCurrentCancellationToken());
+                var response = await client.PostAsync(uri, httpContent, GetCancellationToken());
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -55,7 +66,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
-            finally { TaskCancellation.DisposeCancellation(); }
+            finally { DisposeCancellationToken(); }
         }
 
         public static async Task<TResult> PutAsync<TRequest, TResult>(string uri, TRequest data, string authenticationToken = null)
@@ -69,7 +80,7 @@ namespace DataStore.Customization.Helpers
                 var client = new HttpClient();
                 if (!string.IsNullOrWhiteSpace(authenticationToken))
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationToken);
-                var response = await client.PutAsync(uri, httpContent, TaskCancellation.GetCurrentCancellationToken());
+                var response = await client.PutAsync(uri, httpContent, GetCancellationToken());
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -80,7 +91,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
-            finally { TaskCancellation.DisposeCancellation(); }
+            finally { DisposeCancellationToken(); }
         }
 
         public static async Task<TResult> DeleteAsync<TResult>(string uri, string authenticationToken = null)
@@ -91,7 +102,7 @@ namespace DataStore.Customization.Helpers
                 var client = new HttpClient();
                 if (!string.IsNullOrWhiteSpace(authenticationToken))
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationToken);
-                var response = await client.DeleteAsync(uri, TaskCancellation.GetCurrentCancellationToken());
+                var response = await client.DeleteAsync(uri, GetCancellationToken());
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
@@ -102,7 +113,7 @@ namespace DataStore.Customization.Helpers
                     return result;
             }
             catch (Exception ex) { throw ex; }
-            finally { TaskCancellation.DisposeCancellation(); }
+            finally { DisposeCancellationToken(); }
         }
     }
 }
