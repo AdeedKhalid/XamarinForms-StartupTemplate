@@ -144,7 +144,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ic_activity_indicator.png" />
+    <BundleResource Include="Resources\activity_indicator.gif" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

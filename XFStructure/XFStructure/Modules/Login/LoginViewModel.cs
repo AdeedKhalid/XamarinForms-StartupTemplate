@@ -86,8 +86,8 @@ namespace XFStructure.Modules.Login
 
         private async void ExecuteInvokeAPICallsCommand(object obj)
         {
-            //await GetAPICall();
-            await PostAPICall();
+            await GetAPICall();
+            //await PostAPICall();
             //await PutAPICall();
             //await DeleteAPICall();
         }

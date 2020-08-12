@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace XFStructure.Views
@@ -10,26 +11,24 @@ namespace XFStructure.Views
     {
         #region Initializations
         Image image;
-        private CancellationTokenSource cancellationToken;
         #endregion
 
         #region Properties
-        public static readonly BindableProperty IsRunningProperty = 
-            BindableProperty.Create(nameof(IsRunning), typeof(bool),
-            typeof(MaterialSpinner), false,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                if (oldValue != newValue)
-                {
-                    (bindable as MaterialSpinner).ToggleVisibility((bool)newValue);
-                }
-            });
-
+        public static readonly BindableProperty IsRunningProperty = BindableProperty.Create(nameof(IsRunning), typeof(bool),
+                                                                        typeof(MaterialSpinner), false,
+                                                                        propertyChanged: (bindable, oldValue, newValue) =>
+                                                                        {
+                                                                            if (oldValue != newValue)
+                                                                            {
+                                                                                (bindable as MaterialSpinner).ToggleVisibility((bool)newValue);
+                                                                            }
+                                                                        });
         public bool IsRunning
         {
             get { return (bool)GetValue(IsRunningProperty); }
             set { SetValue(IsRunningProperty, value); }
         }
+
         #endregion
 
         #region Methods
@@ -38,11 +37,13 @@ namespace XFStructure.Views
             try
             {
                 IsVisible = IsRunning = false;
+                Margin = new Thickness(0, -32, 0, 0);
                 VerticalOptions = LayoutOptions.Start;
                 HorizontalOptions = LayoutOptions.Center;
                 image = new Image()
                 {
-                    Source = ImageSource.FromFile("ic_activity_indicator.png"),
+                    Source = ImageSource.FromFile("activity_indicator.gif"),
+                    IsAnimationPlaying = false,
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center,
                     HeightRequest = 22
@@ -58,9 +59,8 @@ namespace XFStructure.Views
                 };
                 Content = frame;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //App.Logger.Report(ex);
             }
         }
 
@@ -68,45 +68,49 @@ namespace XFStructure.Views
         {
             try
             {
-
                 if (isRunning)
                 {
                     IsVisible = true;
-                    TranslationY = -60;
-                    cancellationToken = new CancellationTokenSource();
-                    AnimateSpinner(cancellationToken.Token);
-                    await this.TranslateTo(0, 0, 400, Easing.CubicInOut);
+                    this.image.IsAnimationPlaying = true;
+                    await SetYAxisPosition(true);
                 }
                 else
                 {
-                    cancellationToken?.Cancel();
-                    await this.TranslateTo(0, -60, 400, Easing.CubicInOut);
-                    TranslationY = 0;
+                    await SetYAxisPosition(false);
+                    this.image.IsAnimationPlaying = false;
                     IsVisible = false;
                 }
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //App.Logger.Report(ex);
             }
         }
-        async void AnimateSpinner(CancellationToken cancellation)
+
+        async Task SetYAxisPosition(bool isDown)
         {
             try
             {
-                while (!cancellation.IsCancellationRequested)
+                if (isDown)
                 {
-                    for (int i = 1; i < 2; i++)
+                    for (int i = 0; i <= 80; i += 4)
                     {
-                        if (image.Rotation >= 360f) image.Rotation = 0;
-                        await image.RotateTo(i * (360 / 1), 1000, Easing.Linear);
+                        TranslationY = i;
+                        if (Device.RuntimePlatform == Device.Android) await Task.Delay(1);
+                        else if (Device.RuntimePlatform == Device.iOS) await Task.Delay(10);
+                    }
+                }
+                else
+                {
+                    for (int i = Convert.ToInt32(TranslationY); i >= 0; i -= 4)
+                    {
+                        TranslationY = i;
+                        if (Device.RuntimePlatform == Device.Android) await Task.Delay(1);
+                        else if (Device.RuntimePlatform == Device.iOS) await Task.Delay(10);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //App.Logger.Report(ex, Severity.Error);
             }
         }
         #endregion

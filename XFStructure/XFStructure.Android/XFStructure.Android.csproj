@@ -113,7 +113,7 @@
     <AndroidResource Include="Resources\drawable\progress_bar.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_activity_indicator.png" />
+    <AndroidResource Include="Resources\drawable\activity_indicator.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
