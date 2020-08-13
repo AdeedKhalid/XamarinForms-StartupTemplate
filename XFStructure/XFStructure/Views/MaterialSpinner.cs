@@ -70,6 +70,7 @@ namespace XFStructure.Views
             {
                 if (isRunning)
                 {
+                    if (IsVisible) return;
                     IsVisible = true;
                     this.image.IsAnimationPlaying = true;
                     await SetYAxisPosition(true);
