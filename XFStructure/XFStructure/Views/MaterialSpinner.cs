@@ -10,7 +10,7 @@ namespace XFStructure.Views
     public class MaterialSpinner : ContentView
     {
         #region Initializations
-        Image image;
+        private Image _image;
         #endregion
 
         #region Properties
@@ -40,7 +40,7 @@ namespace XFStructure.Views
                 Margin = new Thickness(0, -32, 0, 0);
                 VerticalOptions = LayoutOptions.Start;
                 HorizontalOptions = LayoutOptions.Center;
-                image = new Image()
+                _image = new Image()
                 {
                     Source = ImageSource.FromFile("activity_indicator.gif"),
                     IsAnimationPlaying = false,
@@ -48,14 +48,18 @@ namespace XFStructure.Views
                     VerticalOptions = LayoutOptions.Center,
                     HeightRequest = 22
                 };
-                var frame = new CircularFrame
+                var frame = new Frame
                 {
                     BackgroundColor = Color.White,
                     HeightRequest = 40,
                     WidthRequest = 40,
                     CornerRadius = 20,
-                    Content = image,
-                    Elevation = 8,
+                    Padding = 0,
+                    Content = _image,
+                    IsClippedToBounds = true,
+                    HasShadow = true,
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center,
                 };
                 Content = frame;
             }
@@ -72,13 +76,13 @@ namespace XFStructure.Views
                 {
                     if (IsVisible) return;
                     IsVisible = true;
-                    this.image.IsAnimationPlaying = true;
+                    _image.IsAnimationPlaying = true;
                     await SetYAxisPosition(true);
                 }
                 else
                 {
                     await SetYAxisPosition(false);
-                    this.image.IsAnimationPlaying = false;
+                    _image.IsAnimationPlaying = false;
                     IsVisible = false;
                 }
             }
