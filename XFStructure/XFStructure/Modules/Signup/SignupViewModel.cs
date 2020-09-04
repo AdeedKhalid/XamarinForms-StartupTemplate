@@ -39,7 +39,7 @@ namespace XFStructure.Modules.Signup
         }
         public SignupViewModel()
         {
-            var a = 10;
+            
         }
         #endregion
     }
