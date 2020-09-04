@@ -34,8 +34,8 @@ namespace XFStructure.ViewModels
         }
         #endregion
 
-        #region PerformServiceCall
-        protected async Task<TResult> PerformServiceCall<TResult>(Func<Task<TResult>> serviceCallAction)
+        #region PerformAPICall
+        protected async Task<TResult> PerformAPICall<TResult>(Func<Task<TResult>> serviceCallAction)
         {
             var cancellationToken = GetCurrentCancellationToken();
             TResult result = default;

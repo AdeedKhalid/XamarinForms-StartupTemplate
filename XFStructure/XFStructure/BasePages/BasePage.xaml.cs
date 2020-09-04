@@ -22,10 +22,7 @@ namespace XFStructure.BasePages
         protected override void OnDisappearing()
         {
             if (BindingContext != null && BindingContext is BasePageViewModel)
-            {
-                var vm = BindingContext as BasePageViewModel;
-                vm.CancelAllTasks();
-            }
+                (BindingContext as BasePageViewModel).CancelAllTasks();
             base.OnDisappearing();
         }
 

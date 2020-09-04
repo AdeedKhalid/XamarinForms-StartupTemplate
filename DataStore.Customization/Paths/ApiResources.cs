@@ -11,10 +11,10 @@ namespace DataStore.Customization.Paths
     {
 
 #if DEBUG
-        public static readonly string EndpointPath = "https://mobileapp.jazz.com.pk/";
+        public static readonly string EndpointPath = "https://google.com.pk/";
         public static readonly string RootPath = "api/v1.0/";
 #else
-        public static readonly string EndpointPath = "https://mobileapp.jazz.com.pk/";
+        public static readonly string EndpointPath = "https://google.com.pk/";
         public static readonly string RootPath = "api/v1.0/";
 #endif
 

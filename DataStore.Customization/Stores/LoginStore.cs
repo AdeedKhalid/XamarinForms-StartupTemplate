@@ -33,7 +33,7 @@ namespace DataStore.Customization.Stores
                 var uri = ApiResources.Test_POSTAPI;
                 return await RequestProvider.PostAsync<TestRequestPOST, TestResponsePOST>(uri, item);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
