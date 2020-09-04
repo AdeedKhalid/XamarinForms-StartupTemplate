@@ -9,7 +9,6 @@
     
     <basepages:BasePage.MainContent>
         <StackLayout>
-            <Label Text="Hello world" />
             <Label Text="{Binding Username}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
